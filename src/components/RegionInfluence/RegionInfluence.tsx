@@ -1,32 +1,62 @@
 import NumberSpinner from '../../components/NumberSpinner/NumberSpinner';
-import { locations } from '../../types/locations';
-import { units } from '../../types/units';
+import { locations as locationTypes } from '../../types/locations';
+import { units as unitTypes } from '../../types/units';
 
-const RegionInfluence = () => {
+interface RegionInfluenceProps {
+    region: string;
+    locations: Record<string, number>;
+    units: Record<string, number>;
+    setLocationNumber: (region: string, location: string, value: number) => void;
+    setUnitNumber: (region: string, unit: string, value: number) => void;
+}
+
+const RegionInfluence = ({region, locations, units, setLocationNumber, setUnitNumber}: RegionInfluenceProps) => {
+    const onLocationNumberChange = (location: string, value: number) => {
+        setLocationNumber(region, location, value);
+    }
+    const onUnitNumberChange = (unit: string, value: number) => {
+        setUnitNumber(region, unit, value);
+    }
 
     const buildLocationsCounter = () => {
-        return Object.keys(locations).map((location) => {
-            const label = locations[location as keyof typeof locations].label;
-            const max = locations[location as keyof typeof locations].max;
+        return Object.keys(locationTypes).map((location) => {
+            const label = locationTypes[location as keyof typeof locationTypes].label;
+            const max = locationTypes[location as keyof typeof locationTypes].max;
             return (
-                // https://base-ui.com/react/components/number-field#api-reference
-                <NumberSpinner value={5} onValueChange={(value) => console.log(value)} defaultValue={0} key={location} label={label} min={0} max={max} />
+                <NumberSpinner
+                    defaultValue={0}
+                    value={locations[location]}
+                    onValueChange={(value) => onLocationNumberChange(location, value || 0)}
+                    key={location}
+                    label={label}
+                    min={0}
+                    max={max}
+                />
             )
         })
     }
 
     const buildUnitsCounter = () => {
-        return Object.keys(units).map((unit) => {
-            const label = units[unit as keyof typeof units].label;
-            const max = units[unit as keyof typeof units].max;
+        return Object.keys(unitTypes).map((unit) => {
+            const label = unitTypes[unit as keyof typeof unitTypes].label;
+            const max = unitTypes[unit as keyof typeof unitTypes].max;
             return (
-                <NumberSpinner onValueChange={(value) => console.log(value)} defaultValue={0} key={unit} label={label} min={0} max={max} />
+                <NumberSpinner
+                    defaultValue={0}
+                    value={units[unit]}
+                    onValueChange={(value) => onUnitNumberChange(unit, value || 0)}
+                    key={unit}
+                    label={label}
+                    min={0}
+                    max={max}
+                />
             )
         })
     }
 
     return (
         <div>
+            <h2>{region}</h2>
             <div className="locations-counters">
                 {buildLocationsCounter()}
             </div>
