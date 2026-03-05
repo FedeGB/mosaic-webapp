@@ -1,0 +1,7 @@
+.region {
+    padding: 0 20px;
+    &-locations, &-units {
+        display: flex;
+        gap: 20px;
+    }
+}

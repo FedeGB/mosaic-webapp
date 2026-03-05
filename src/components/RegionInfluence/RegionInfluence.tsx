@@ -2,6 +2,8 @@ import NumberSpinner from '../../components/NumberSpinner/NumberSpinner';
 import { locations as locationTypes } from '../../types/locations';
 import { units as unitTypes } from '../../types/units';
 
+import styles from './RegionInfluence.module.scss';
+
 interface RegionInfluenceProps {
     region: string;
     locations: Record<string, number>;
@@ -55,12 +57,12 @@ const RegionInfluence = ({region, locations, units, setLocationNumber, setUnitNu
     }
 
     return (
-        <div>
+        <div className={styles.region}>
             <h2>{region}</h2>
-            <div className="locations-counters">
+            <div className={styles['region-locations']}>
                 {buildLocationsCounter()}
             </div>
-            <div className="units-counters">
+            <div className={styles['region-units']}>
                 {buildUnitsCounter()}
             </div>
         </div>
