@@ -18,6 +18,7 @@ const InfluenceView = ({regions, setLocationNumber, setUnitNumber}: InfluenceVie
                 region={region}
                 locations={data.locations}
                 units={data.units}
+                influence={data.influence}
                 setLocationNumber={setLocationNumber}
                 setUnitNumber={setUnitNumber}
             />

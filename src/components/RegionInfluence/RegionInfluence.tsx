@@ -8,11 +8,12 @@ interface RegionInfluenceProps {
     region: string;
     locations: Record<string, number>;
     units: Record<string, number>;
+    influence: number;
     setLocationNumber: (region: string, location: string, value: number) => void;
     setUnitNumber: (region: string, unit: string, value: number) => void;
 }
 
-const RegionInfluence = ({region, locations, units, setLocationNumber, setUnitNumber}: RegionInfluenceProps) => {
+const RegionInfluence = ({region, locations, units, influence, setLocationNumber, setUnitNumber}: RegionInfluenceProps) => {
     const onLocationNumberChange = (location: string, value: number) => {
         setLocationNumber(region, location, value);
     }
@@ -28,8 +29,8 @@ const RegionInfluence = ({region, locations, units, setLocationNumber, setUnitNu
                 <div key={location} className={styles['region-locations-counter']}>
                     <NumberSpinner
                         defaultValue={0}
-                        value={locations[location]}
-                        onValueChange={(value) => onLocationNumberChange(location, value || 0)}
+                        value={locations[label] ?? 0}
+                        onValueChange={(value) => onLocationNumberChange(label, value || 0)}
                         key={location}
                         label={label}
                     min={0}
@@ -48,8 +49,8 @@ const RegionInfluence = ({region, locations, units, setLocationNumber, setUnitNu
                 <div key={unit} className={styles['region-units-counter']}>
                     <NumberSpinner
                         defaultValue={0}
-                        value={units[unit]}
-                        onValueChange={(value) => onUnitNumberChange(unit, value || 0)}
+                        value={units[label] ?? 0}
+                        onValueChange={(value) => onUnitNumberChange(label, value || 0)}
                         key={unit}
                         label={label}
                         min={0}
@@ -63,6 +64,7 @@ const RegionInfluence = ({region, locations, units, setLocationNumber, setUnitNu
     return (
         <div className={styles.region}>
             <h2>{region}</h2>
+            <p>Influencia: {influence}</p>
             <div className={styles['region-locations']}>
                 {buildLocationsCounter()}
             </div>
