@@ -7,9 +7,7 @@ const Influence = () => {
     const setUnitNumber = useRegionsStore((state) => state.setUnitNumber);
 
     return (
-        <div>
-            <InfluenceView regions={regions} setLocationNumber={setLocationNumber} setUnitNumber={setUnitNumber} />
-        </div>
+        <InfluenceView regions={regions} setLocationNumber={setLocationNumber} setUnitNumber={setUnitNumber} />
     )
 }
 

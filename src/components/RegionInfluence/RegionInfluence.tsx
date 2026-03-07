@@ -25,15 +25,17 @@ const RegionInfluence = ({region, locations, units, setLocationNumber, setUnitNu
             const label = locationTypes[location as keyof typeof locationTypes].label;
             const max = locationTypes[location as keyof typeof locationTypes].max;
             return (
-                <NumberSpinner
-                    defaultValue={0}
-                    value={locations[location]}
-                    onValueChange={(value) => onLocationNumberChange(location, value || 0)}
-                    key={location}
-                    label={label}
+                <div key={location} className={styles['region-locations-counter']}>
+                    <NumberSpinner
+                        defaultValue={0}
+                        value={locations[location]}
+                        onValueChange={(value) => onLocationNumberChange(location, value || 0)}
+                        key={location}
+                        label={label}
                     min={0}
                     max={max}
                 />
+                </div>
             )
         })
     }
@@ -43,15 +45,17 @@ const RegionInfluence = ({region, locations, units, setLocationNumber, setUnitNu
             const label = unitTypes[unit as keyof typeof unitTypes].label;
             const max = unitTypes[unit as keyof typeof unitTypes].max;
             return (
-                <NumberSpinner
-                    defaultValue={0}
-                    value={units[unit]}
-                    onValueChange={(value) => onUnitNumberChange(unit, value || 0)}
-                    key={unit}
-                    label={label}
-                    min={0}
-                    max={max}
-                />
+                <div key={unit} className={styles['region-units-counter']}>
+                    <NumberSpinner
+                        defaultValue={0}
+                        value={units[unit]}
+                        onValueChange={(value) => onUnitNumberChange(unit, value || 0)}
+                        key={unit}
+                        label={label}
+                        min={0}
+                        max={max}
+                    />
+                </div>
             )
         })
     }

@@ -15,11 +15,11 @@ const Header = () => {
                     <Button variant='contained' sx={{...isActiveStyle(isActive)}}>Influencia</Button>
                 )}
             </NavLink>
-            <NavLink to="/civilization-pillars">
+            {/* <NavLink to="/civilization-pillars">
                 {({ isActive }) => (
                     <Button variant='contained' sx={isActiveStyle(isActive)}>Pilares de Civilización</Button>
                 )}
-            </NavLink>
+            </NavLink> */}
         </header>
     )
 }
