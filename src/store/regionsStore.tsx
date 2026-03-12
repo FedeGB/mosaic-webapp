@@ -58,6 +58,17 @@ const defaultRegionsState = {
     },
 };
 
+const defaultTotalsState = {
+    [locations.CIUDADES.label]: 0,
+    [locations.CIUDADES_PORTUARIAS.label]: 0,
+    [locations.PUEBLOS_AGRICOLAS.label]: 0,
+    [locations.PUEBLOS_INDUSTRIALES.label]: 0,
+    [locations.MARAVILLAS.label]: 0,
+    [units.INFANTERIA.label]: 0,
+    [units.CABALLERIA.label]: 0,
+    [units.ASEDIO.label]: 0,
+}
+
 const calculateInfluenceLocationInfluenceDiff = (location: string, oldValue: number, newValue: number) => {
     const influencePoints = [
         locations.CIUDADES.label,
@@ -69,15 +80,21 @@ const calculateInfluenceLocationInfluenceDiff = (location: string, oldValue: num
 
 type regionsStore = {
     regions: typeof defaultRegionsState;
+    totals: typeof defaultTotalsState;
     setLocationNumber: (region: string, location: string, value: number) => void;
     setUnitNumber: (region: string, unit: string, value: number) => void;
     resetRegions: () => void;
 };
 
+const calculateTotals = (diff: number, label: string, totals: typeof defaultTotalsState) => {
+    return { ...totals, [label]: totals[label] + diff };
+}
+
 const useRegionsStore = create<regionsStore>()(
     persist(
         (set, get) => ({
             regions: defaultRegionsState,
+            totals: defaultTotalsState,
             setLocationNumber: (region: string, location: string, value: number) => { 
                 // if(value > locations[location as keyof typeof locations].max) {
                 //     return;
@@ -86,7 +103,8 @@ const useRegionsStore = create<regionsStore>()(
                 const oldValue = newRegions[region].locations[location];
                 newRegions[region].influence += calculateInfluenceLocationInfluenceDiff(location, oldValue, value);
                 newRegions[region].locations[location] = value;
-                return set({ regions: newRegions });
+                const newTotals = calculateTotals(value - oldValue, location, {...get().totals});
+                return set({ regions: newRegions, totals: newTotals });
             },
             setUnitNumber: (region: string, unit: string, value: number) => {
                 // if(value > units[unit as keyof typeof units].max) {
@@ -97,9 +115,10 @@ const useRegionsStore = create<regionsStore>()(
                 const diff = value - oldValue;
                 newRegions[region].units[unit] = value;
                 newRegions[region].influence += (diff);
-                return set({ regions: newRegions });
+                const newTotals = unit !== units.EXTRA.label ? calculateTotals(diff, unit, {...get().totals}) : get().totals;
+                return set({ regions: newRegions, totals: newTotals });
             },
-            resetRegions: () => set({ regions: defaultRegionsState }),
+            resetRegions: () => set({ regions: defaultRegionsState, totals: defaultTotalsState }),
         }),
         {
             name: 'regions-storage',
@@ -110,4 +129,4 @@ const useRegionsStore = create<regionsStore>()(
 
 const isStoreLoaded = useRegionsStore.persist.hasHydrated();
 
-export { useRegionsStore, isStoreLoaded, defaultRegionsState };
+export { useRegionsStore, isStoreLoaded, defaultRegionsState, defaultTotalsState };

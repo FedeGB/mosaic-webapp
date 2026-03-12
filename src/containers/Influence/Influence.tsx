@@ -5,11 +5,12 @@ const Influence = () => {
     const regions = useRegionsStore((state) => state.regions);
     const setLocationNumber = useRegionsStore((state) => state.setLocationNumber);
     const setUnitNumber = useRegionsStore((state) => state.setUnitNumber);
+    const totals = useRegionsStore((state) => state.totals);
 
     if (!isStoreLoaded) return null;
 
     return (
-        <InfluenceView regions={regions} setLocationNumber={setLocationNumber} setUnitNumber={setUnitNumber} />
+        <InfluenceView regions={regions} setLocationNumber={setLocationNumber} setUnitNumber={setUnitNumber} totals={totals} />
     )
 }
 
