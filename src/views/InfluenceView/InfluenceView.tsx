@@ -1,5 +1,6 @@
 import RegionInfluence from '../../components/RegionInfluence/RegionInfluence';
 import { defaultRegionsState } from '../../store/regionsStore';
+import TotalsInRegions from '../../components/TotalsInRegions/TotalsInRegions';
 
 import styles from './InfluenceView.module.scss';
 
@@ -12,6 +13,7 @@ interface InfluenceViewProps {
 const InfluenceView = ({regions, setLocationNumber, setUnitNumber}: InfluenceViewProps) => {
   return (
     <div className={styles.wrapper}>
+        <TotalsInRegions />
         {Object.entries(regions).map(([region, data]) => (
             <RegionInfluence
                 key={region}
