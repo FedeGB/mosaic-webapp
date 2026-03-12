@@ -22,38 +22,38 @@ const defaultUnitsState = {
 
 const defaultRegionsState = {
     [regions.HIPSANIA]: {
-        locations: defaultLocationsState,
-        units: defaultUnitsState,
+        locations: {...defaultLocationsState},
+        units: { ...defaultUnitsState },
         influence: 0,
     },
     [regions.GALIA]: {
-        locations: defaultLocationsState,
-        units: defaultUnitsState,
+        locations: {...defaultLocationsState},
+        units: {...defaultUnitsState},
         influence: 0,
     },
     [regions.ITALIA]: {
-        locations: defaultLocationsState,
-        units: defaultUnitsState,
+        locations: {...defaultLocationsState},
+        units: {...defaultUnitsState},
         influence: 0,
     },
     [regions.GRECIA]: {
-        locations: defaultLocationsState,
-        units: defaultUnitsState,
+        locations: {...defaultLocationsState},
+        units: {...defaultUnitsState},
         influence: 0,
     },
     [regions.ASIRIA]: {
-        locations: defaultLocationsState,
-        units: defaultUnitsState,
+        locations: {...defaultLocationsState},
+        units: {...defaultUnitsState},
         influence: 0,
     },
     [regions.EGIPTO]: {
-        locations: defaultLocationsState,
-        units: defaultUnitsState,
+        locations: {...defaultLocationsState},
+        units: {...defaultUnitsState},
          influence: 0,
     },
     [regions.NUMIDIA]: {
-        locations: defaultLocationsState,
-        units: defaultUnitsState,
+        locations: {...defaultLocationsState},
+        units: {...defaultUnitsState},
         influence: 0,
     },
 };
@@ -96,26 +96,22 @@ const useRegionsStore = create<regionsStore>()(
             regions: defaultRegionsState,
             totals: defaultTotalsState,
             setLocationNumber: (region: string, location: string, value: number) => { 
-                // if(value > locations[location as keyof typeof locations].max) {
-                //     return;
-                // }
-                const newRegions = { ...get().regions };
+                const { regions, totals } = get();
+                const newRegions = { ...regions };
                 const oldValue = newRegions[region].locations[location];
                 newRegions[region].influence += calculateInfluenceLocationInfluenceDiff(location, oldValue, value);
                 newRegions[region].locations[location] = value;
-                const newTotals = calculateTotals(value - oldValue, location, {...get().totals});
+                const newTotals = calculateTotals(value - oldValue, location, totals);
                 return set({ regions: newRegions, totals: newTotals });
             },
             setUnitNumber: (region: string, unit: string, value: number) => {
-                // if(value > units[unit as keyof typeof units].max) {
-                //     return;
-                // }
-                const newRegions = { ...get().regions };
+                const { regions, totals } = get();
+                const newRegions = { ...regions };
                 const oldValue = newRegions[region].units[unit];
                 const diff = value - oldValue;
                 newRegions[region].units[unit] = value;
                 newRegions[region].influence += (diff);
-                const newTotals = unit !== units.EXTRA.label ? calculateTotals(diff, unit, {...get().totals}) : get().totals;
+                const newTotals = unit !== units.EXTRA.label ? calculateTotals(diff, unit, totals) : totals;
                 return set({ regions: newRegions, totals: newTotals });
             },
             resetRegions: () => set({ regions: defaultRegionsState, totals: defaultTotalsState }),

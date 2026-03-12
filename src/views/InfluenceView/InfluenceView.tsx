@@ -24,6 +24,7 @@ const InfluenceView = ({regions, totals, setLocationNumber, setUnitNumber}: Infl
                 influence={data.influence}
                 setLocationNumber={setLocationNumber}
                 setUnitNumber={setUnitNumber}
+                totals={totals}
             />
         ))}
     </div>
