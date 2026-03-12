@@ -26,7 +26,7 @@ const RegionInfluence = ({region, locations, units, influence, totals, setLocati
     const buildLocationsCounter = () => {
         return Object.keys(locationTypes).map((location) => {
             const label = locationTypes[location as keyof typeof locationTypes].label;
-            const max = locationTypes[location as keyof typeof locationTypes].max - totals[label];
+            const max = locationTypes[location as keyof typeof locationTypes].max + locations[label] - totals[label];
             return (
                 <div key={location} className={styles['region-locations-counter']}>
                     <NumberSpinner
@@ -47,7 +47,7 @@ const RegionInfluence = ({region, locations, units, influence, totals, setLocati
         return Object.keys(unitTypes).map((unit) => {
             const label = unitTypes[unit as keyof typeof unitTypes].label;
             const max = label !== unitTypes.EXTRA.label ?
-                unitTypes[unit as keyof typeof unitTypes].max - totals[label] :
+                unitTypes[unit as keyof typeof unitTypes].max + units[label] - totals[label] :
                 unitTypes[unit as keyof typeof unitTypes].max;
             return (
                 <div key={unit} className={styles['region-units-counter']}>
