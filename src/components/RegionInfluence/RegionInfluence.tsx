@@ -67,8 +67,8 @@ const RegionInfluence = ({region, locations, units, influence, totals, setLocati
 
     return (
         <div className={styles.region}>
-            <h2>{region}</h2>
-            <p>Influencia: {influence}</p>
+            <h2 className={styles['region-title']}>{region}</h2>
+            <label className={styles['region-influence']}>Influencia: {influence}</label>
             <div className={styles['region-locations']}>
                 {buildLocationsCounter()}
             </div>

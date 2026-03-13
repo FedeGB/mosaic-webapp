@@ -11,14 +11,14 @@ interface TotalsInRegionsProps {
 const TotalsInRegions = ({totals}: TotalsInRegionsProps) => {
     return (
         <div className={styles['wrapper']}>
-            <p>Ciudades: {totals[locations.CIUDADES.label]} / {locations.CIUDADES.max}</p>
-            <p>Ciudades Portuarias: {totals[locations.CIUDADES_PORTUARIAS.label]} / {locations.CIUDADES_PORTUARIAS.max}</p>
-            <p>Pueblos Agricolas: {totals[locations.PUEBLOS_AGRICOLAS.label]} / {locations.PUEBLOS_AGRICOLAS.max}</p>
-            <p>Pueblos Industriales: {totals[locations.PUEBLOS_INDUSTRIALES.label]} / {locations.PUEBLOS_INDUSTRIALES.max}</p>
-            <p>Infanteria: {totals[units.INFANTERIA.label]} / {units.INFANTERIA.max}</p>
-            <p>Caballeria: {totals[units.CABALLERIA.label]} / {units.CABALLERIA.max}</p>
-            <p>Asedio: {totals[units.ASEDIO.label]} / {units.ASEDIO.max}</p>
-            <p>Maravillas: {totals[locations.MARAVILLAS.label]} / {locations.MARAVILLAS.max}</p>
+            <label>Ciudades: {totals[locations.CIUDADES.label]} / {locations.CIUDADES.max}</label>
+            <label>Ciudades Portuarias: {totals[locations.CIUDADES_PORTUARIAS.label]} / {locations.CIUDADES_PORTUARIAS.max}</label>
+            <label>Pueblos Agricolas: {totals[locations.PUEBLOS_AGRICOLAS.label]} / {locations.PUEBLOS_AGRICOLAS.max}</label>
+            <label>Pueblos Industriales: {totals[locations.PUEBLOS_INDUSTRIALES.label]} / {locations.PUEBLOS_INDUSTRIALES.max}</label>
+            <label>Infanteria: {totals[units.INFANTERIA.label]} / {units.INFANTERIA.max}</label>
+            <label>Caballeria: {totals[units.CABALLERIA.label]} / {units.CABALLERIA.max}</label>
+            <label>Asedio: {totals[units.ASEDIO.label]} / {units.ASEDIO.max}</label>
+            <label>Maravillas: {totals[locations.MARAVILLAS.label]} / {locations.MARAVILLAS.max}</label>
         </div>
     )
 }

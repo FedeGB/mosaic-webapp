@@ -1,5 +1,5 @@
 export const regions = {
-    HIPSANIA: 'Hipsania',
+    HIPSANIA: 'Hispania',
     GALIA: 'Galia',
     ITALIA: 'Italia',
     GRECIA: 'Grecia',

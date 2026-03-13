@@ -21,7 +21,7 @@ const Header = () => {
                 {({ isActive }) => (
                     <Button variant='contained' sx={isActiveStyle(isActive)}>Pilares de Civilización</Button>
             </NavLink> */}
-            <Button onClick={clearRegionsStore} variant='contained'>Limpiar Puntuación</Button>
+            <Button color="primary" onClick={clearRegionsStore} variant='contained'>Limpiar Puntuación</Button>
         </header>
     )
 }
