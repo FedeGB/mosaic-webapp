@@ -60,7 +60,7 @@ export default function NumberSpinner({
           sx={{
             display: 'inline-block',
             cursor: 'ew-resize',
-            fontSize: '0.875rem',
+            fontSize: '16px',
             color: 'text.primary',
             fontWeight: 500,
             lineHeight: 1.5,

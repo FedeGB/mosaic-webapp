@@ -4,17 +4,21 @@
     gap: 10px;
 
     &-title {
+        color: rgb(168, 53, 53);
         font-family: 'Roboto';
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 600;
         margin: 20px 0 10px 0;
+        
+        &-influence {
+            color: black;
+            font-family: 'Roboto';
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
     }
 
-    &-influence {
-        font-family: 'Roboto';
-        font-size: 14px;
-        font-weight: 500;
-    }
     
     &-locations, &-units {
         display: flex;
