@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "homepage": "https://fedegb.github.io/mosaic-webapp/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
