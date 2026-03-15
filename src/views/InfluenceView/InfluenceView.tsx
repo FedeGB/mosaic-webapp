@@ -4,7 +4,6 @@ import TotalsInRegions from '../../components/TotalsInRegions/TotalsInRegions';
 import type { SelectChangeEvent } from '@mui/material/Select';
 
 import styles from './InfluenceView.module.scss';
-import RegionSelect from '../../components/RegionSelect/RegionSelect';
 
 interface InfluenceViewProps {
     regions: typeof defaultRegionsState;
