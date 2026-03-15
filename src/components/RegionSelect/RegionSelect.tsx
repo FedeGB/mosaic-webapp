@@ -22,7 +22,7 @@ const RegionSelect = ({ handleOnChange, value }: RegionSelectProps) => {
           autoWidth
           sx={{
             backgroundColor: '#1976d2',
-            color: 'black',
+            color: 'white',
           }}
         >
           {buildMenuItems()}
