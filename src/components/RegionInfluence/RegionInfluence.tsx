@@ -2,6 +2,8 @@ import NumberSpinner from '../../components/NumberSpinner/NumberSpinner';
 import type { defaultTotalsState } from '../../store/regionsStore';
 import { locations as locationTypes } from '../../types/locations';
 import { units as unitTypes } from '../../types/units';
+import type { SelectChangeEvent } from '@mui/material/Select';
+import RegionSelect from '../../components/RegionSelect/RegionSelect';
 
 import styles from './RegionInfluence.module.scss';
 
@@ -13,9 +15,11 @@ interface RegionInfluenceProps {
     totals: typeof defaultTotalsState;
     setLocationNumber: (region: string, location: string, value: number) => void;
     setUnitNumber: (region: string, unit: string, value: number) => void;
+    selectedRegion: string;
+    handleOnRegionChange: (event: SelectChangeEvent) => void;
 }
 
-const RegionInfluence = ({region, locations, units, influence, totals, setLocationNumber, setUnitNumber}: RegionInfluenceProps) => {
+const RegionInfluence = ({region, locations, units, influence, totals, setLocationNumber, setUnitNumber, selectedRegion, handleOnRegionChange}: RegionInfluenceProps) => {
     const onLocationNumberChange = (location: string, value: number) => {
         setLocationNumber(region, location, value);
     }
@@ -68,7 +72,7 @@ const RegionInfluence = ({region, locations, units, influence, totals, setLocati
     return (
         <div className={styles.region}>
             <h2 className={styles['region-title']}>
-                {region}
+                <RegionSelect handleOnChange={handleOnRegionChange} value={selectedRegion} />
                 <span className={styles['region-title-influence']}>Influencia: {influence}</span>
             </h2>
             <div className={styles['region-locations']}>
