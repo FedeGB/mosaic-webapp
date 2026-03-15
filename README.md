@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# Mosaic Webapp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight score-tracking helper for the **Mosaic / Civilization-style board game** built with **React + TypeScript + Vite**.
 
-Currently, two official plugins are available:
+This app lets you record and track influence across regions (Hispania, Galia, Italia, Grecia, Asiria, Egipto, Numidia), including:
+- Location scoring (cities, port cities, agricultural towns, industrial towns, and wonders)
+- Unit scoring (infantry, cavalry, siege, and extra units)
+- Per-region influence totals and global totals
+- Persistent state via localStorage (so you can refresh without losing progress)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> ⚠️ The **Civilization Pillars** and **Victory Points** views are currently placeholder stubs.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Getting Started
 
-## Expanding the ESLint configuration
+### 1) Install
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2) Start development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Open http://localhost:5173 in your browser.
+
+### 3) Build for production
+
+```bash
+npm run build
+```
+
+### 4) Preview production build
+
+```bash
+npm run preview
+```
+
+---
+
+## 🧭 App Structure
+
+- `src/App.tsx` - top-level routes / layout
+- `src/store/regionsStore.tsx` - main state store (Zustand + localStorage persistence)
+- `src/views/InfluenceView/InfluenceView.tsx` - UI for region scoring
+
+### Routes
+- `/` or `/influence` → Influence scoring view
+- `/civilization-pillars` → Placeholder view for civilization pillar scoring
+- `/victory-points` → Placeholder view for victory points
+
+---
+
+## 🧠 How the scoring works (current implementation)
+
+- Each region tracks counts for locations + units
+- Location score changes affect influence (cities/port cities/wonders count double)
+- Unit counts directly contribute to influence (extra units do not add to totals)
+- Totals are collected across all regions for quick reference
+
+The store is persisted to `localStorage` under the key `regions-storage`.
+
+---
+
+## 🧩 Tech Stack
+
+- React 19
+- TypeScript 5
+- Vite
+- MUI (Material UI)
+- Zustand (state + persistence)
+- Sass (for styling)
+
+---
+
+## ✅ Next improvements (ideas)
+
+- Implement a full scoring view for **Civilization Pillars**
+- Implement a full scoring view for **Victory Points**
+- Add better navigation (active route highlighting)
+
+---
+
+## 📝 Notes
+
+- Click the **"Limpiar Puntuación"** button in the header to reset all values.
+- The app currently uses Spanish labels for locations and units.
