@@ -118,7 +118,7 @@ const useRegionsStore = create<regionsStore>()(
                 const oldValue = newRegions[region].units[unit];
                 const diff = value - oldValue;
                 newRegions[region].units[unit] = value;
-                if (!newRegions[region].isDisableUnits) {
+                if (!newRegions[region].isDisableUnits || unit === units.EXTRA.label) {
                     newRegions[region].influence += (diff);
                 }
                 const newTotals = unit !== units.EXTRA.label ? calculateTotals(diff, unit, totals) : totals;
@@ -129,10 +129,18 @@ const useRegionsStore = create<regionsStore>()(
                 const newRegions = { ...regions };
                 const currentRegion = newRegions[region];
                 currentRegion.isDisableUnits = isDisableUnit;
+                const influenceDiff = Object.keys(currentRegion.units).reduce(
+                    (acc, value) =>
+                        value !== units.EXTRA.label ?
+                        acc + currentRegion.units[value] :
+                        acc,
+                0);
                 if (isDisableUnit) {
-                    currentRegion.influence = currentRegion.influence - Object.values(currentRegion.units).reduce((acc, value) => acc + value, 0);
+                    currentRegion.influence = currentRegion.influence -
+                    influenceDiff
                 } else {
-                    currentRegion.influence = currentRegion.influence + Object.values(currentRegion.units).reduce((acc, value) => acc + value, 0);
+                    currentRegion.influence = currentRegion.influence +
+                    influenceDiff
                 }
                 return set({ regions: newRegions });
 
