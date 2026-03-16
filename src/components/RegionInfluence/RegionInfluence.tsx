@@ -4,6 +4,8 @@ import { locations as locationTypes } from '../../types/locations';
 import { units as unitTypes } from '../../types/units';
 import type { SelectChangeEvent } from '@mui/material/Select';
 import RegionSelect from '../../components/RegionSelect/RegionSelect';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 import styles from './RegionInfluence.module.scss';
 
@@ -17,9 +19,23 @@ interface RegionInfluenceProps {
     setUnitNumber: (region: string, unit: string, value: number) => void;
     selectedRegion: string;
     handleOnRegionChange: (event: SelectChangeEvent) => void;
+    isDisableUnits: boolean;
+    handleOnDisableUnitsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const RegionInfluence = ({region, locations, units, influence, totals, setLocationNumber, setUnitNumber, selectedRegion, handleOnRegionChange}: RegionInfluenceProps) => {
+const RegionInfluence = ({
+    region,
+    locations,
+    units,
+    influence,
+    totals,
+    setLocationNumber,
+    setUnitNumber,
+    selectedRegion,
+    handleOnRegionChange,
+    isDisableUnits,
+    handleOnDisableUnitsChange
+}: RegionInfluenceProps) => {
     const onLocationNumberChange = (location: string, value: number) => {
         setLocationNumber(region, location, value);
     }
@@ -81,6 +97,25 @@ const RegionInfluence = ({region, locations, units, influence, totals, setLocati
             <div className={styles['region-units']}>
                 {buildUnitsCounter()}
             </div>
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={isDisableUnits}
+                        onChange={handleOnDisableUnitsChange}
+                        size='large'
+                        sx={{
+                            color: '#1976d2',
+                        }}
+                    />
+                }
+                label="Deshabilitar unidades"
+                sx={{
+                    '& .MuiFormControlLabel-label': {
+                        fontSize: 18,
+                        fontWeight: '500',
+                    }
+                }}
+            />
         </div>
     )
 }
