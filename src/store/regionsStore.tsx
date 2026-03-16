@@ -25,36 +25,43 @@ const defaultRegionsState = {
         locations: {...defaultLocationsState},
         units: { ...defaultUnitsState },
         influence: 0,
+        isDisableUnits: false,
     },
     [regions.GALIA]: {
         locations: {...defaultLocationsState},
         units: {...defaultUnitsState},
         influence: 0,
+        isDisableUnits: false,
     },
     [regions.ITALIA]: {
         locations: {...defaultLocationsState},
         units: {...defaultUnitsState},
         influence: 0,
+        isDisableUnits: false,
     },
     [regions.GRECIA]: {
         locations: {...defaultLocationsState},
         units: {...defaultUnitsState},
         influence: 0,
+        isDisableUnits: false,
     },
     [regions.ASIRIA]: {
         locations: {...defaultLocationsState},
         units: {...defaultUnitsState},
+        isDisableUnits: false,
         influence: 0,
     },
     [regions.EGIPTO]: {
         locations: {...defaultLocationsState},
         units: {...defaultUnitsState},
-         influence: 0,
+        influence: 0,
+        isDisableUnits: false,
     },
     [regions.NUMIDIA]: {
         locations: {...defaultLocationsState},
         units: {...defaultUnitsState},
         influence: 0,
+        isDisableUnits: false,
     },
 };
 
@@ -83,6 +90,7 @@ type regionsStore = {
     totals: typeof defaultTotalsState;
     setLocationNumber: (region: string, location: string, value: number) => void;
     setUnitNumber: (region: string, unit: string, value: number) => void;
+    setIsDisableUnits: (region: string, isDisableUnit: boolean) => void;
     resetRegions: () => void;
 };
 
@@ -110,9 +118,24 @@ const useRegionsStore = create<regionsStore>()(
                 const oldValue = newRegions[region].units[unit];
                 const diff = value - oldValue;
                 newRegions[region].units[unit] = value;
-                newRegions[region].influence += (diff);
+                if (!newRegions[region].isDisableUnits) {
+                    newRegions[region].influence += (diff);
+                }
                 const newTotals = unit !== units.EXTRA.label ? calculateTotals(diff, unit, totals) : totals;
                 return set({ regions: newRegions, totals: newTotals });
+            },
+            setIsDisableUnits: (region: string, isDisableUnit: boolean) => {
+                const { regions } = get();
+                const newRegions = { ...regions };
+                const currentRegion = newRegions[region];
+                currentRegion.isDisableUnits = isDisableUnit;
+                if (isDisableUnit) {
+                    currentRegion.influence = currentRegion.influence - Object.values(currentRegion.units).reduce((acc, value) => acc + value, 0);
+                } else {
+                    currentRegion.influence = currentRegion.influence + Object.values(currentRegion.units).reduce((acc, value) => acc + value, 0);
+                }
+                return set({ regions: newRegions });
+
             },
             resetRegions: () => set({ regions: defaultRegionsState, totals: defaultTotalsState }),
         }),

@@ -12,10 +12,20 @@ interface InfluenceViewProps {
     setUnitNumber: (region: string, unit: string, value: number) => void;
     selectedRegion: string;
     handleOnRegionChange: (event: SelectChangeEvent) => void;
-
+    isDisableUnits: boolean;
+    handleOnDisableUnitsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InfluenceView = ({selectedRegion, handleOnRegionChange, regions, totals, setLocationNumber, setUnitNumber}: InfluenceViewProps) => {
+const InfluenceView = ({
+  selectedRegion,
+  handleOnRegionChange,
+  regions,
+  totals,
+  setLocationNumber,
+  setUnitNumber,
+  isDisableUnits,
+  handleOnDisableUnitsChange
+}: InfluenceViewProps) => {
   return (
     <div className={styles.wrapper}>
         <TotalsInRegions totals={totals} />
@@ -29,6 +39,8 @@ const InfluenceView = ({selectedRegion, handleOnRegionChange, regions, totals, s
             totals={totals}
             selectedRegion={selectedRegion}
             handleOnRegionChange={handleOnRegionChange}
+            isDisableUnits={isDisableUnits}
+            handleOnDisableUnitsChange={handleOnDisableUnitsChange}
         />
     </div>
   );
