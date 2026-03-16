@@ -20,50 +20,24 @@ const defaultUnitsState = {
     [units.EXTRA.label]: 0,
 }
 
-const defaultRegionsState = {
-    [regions.HIPSANIA]: {
-        locations: {...defaultLocationsState},
-        units: { ...defaultUnitsState },
-        influence: 0,
-        isDisableUnits: false,
-    },
-    [regions.GALIA]: {
-        locations: {...defaultLocationsState},
-        units: {...defaultUnitsState},
-        influence: 0,
-        isDisableUnits: false,
-    },
-    [regions.ITALIA]: {
-        locations: {...defaultLocationsState},
-        units: {...defaultUnitsState},
-        influence: 0,
-        isDisableUnits: false,
-    },
-    [regions.GRECIA]: {
-        locations: {...defaultLocationsState},
-        units: {...defaultUnitsState},
-        influence: 0,
-        isDisableUnits: false,
-    },
-    [regions.ASIRIA]: {
-        locations: {...defaultLocationsState},
-        units: {...defaultUnitsState},
-        isDisableUnits: false,
-        influence: 0,
-    },
-    [regions.EGIPTO]: {
-        locations: {...defaultLocationsState},
-        units: {...defaultUnitsState},
-        influence: 0,
-        isDisableUnits: false,
-    },
-    [regions.NUMIDIA]: {
-        locations: {...defaultLocationsState},
-        units: {...defaultUnitsState},
-        influence: 0,
-        isDisableUnits: false,
-    },
-};
+interface defaultRegionStateInterface {
+    [region: string]: {
+        locations: typeof defaultLocationsState;
+        units: typeof defaultUnitsState;
+        influence: number;
+        isDisableUnits: boolean;
+    }
+}
+
+const defaultRegionsState: defaultRegionStateInterface = Object.values(regions).reduce((acc, value) => ({
+        ...acc,
+        [value]: {
+            locations: {...defaultLocationsState},
+            units: { ...defaultUnitsState },
+            influence: 0,
+            isDisableUnits: false,
+        }
+}), {})
 
 const defaultTotalsState = {
     [locations.CIUDADES.label]: 0,
