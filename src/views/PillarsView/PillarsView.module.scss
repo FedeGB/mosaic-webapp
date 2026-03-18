@@ -1,0 +1,10 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+
+    .pillars-counter {
+        flex: 0 0 auto;
+    }
+}
