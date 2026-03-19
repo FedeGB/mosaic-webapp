@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router'
-import { useNavigate } from "react-router-dom";
 import { Button, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useRegionsStore } from '../../store/regionsStore'
@@ -13,9 +12,7 @@ const Header = () => {
     }
     const clearRegionsStore = useRegionsStore((state) => state.resetRegions)
     const clearPillarsStore = usePillarsStore((state) => state.resetPillars)
-    const navigate = useNavigate();
     const clearData = () => {
-        navigate(0);
         clearRegionsStore();
         clearPillarsStore();
     };
