@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 import Header from './components/Header/Header'
 import Influence from './containers/Influence/Influence'
 import CivilizationPillars from './containers/CivilizationPillars/CivilizationPillars'
@@ -12,7 +12,7 @@ function App() {
     <div className={styles.app}>
       <Header />
       <Routes>
-        <Route path="/" element={<Influence />} />
+        <Route path="/" element={<Navigate to="/influence" replace />} />
         <Route path="/influence" element={<Influence />} />
         <Route path="/civilization-pillars" element={<CivilizationPillars />} />
         <Route path="/victory-points" element={<VictoryPoints />} />
