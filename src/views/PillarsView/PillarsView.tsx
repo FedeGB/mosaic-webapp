@@ -9,6 +9,13 @@ interface PillarsViewProps {
     setPillarCount: (pillar: string, count: number) => void;
 }
 
+const buildPillarLabel = (pillar: string, icon: string) => {
+    return <span className={styles['pillar-label']}>
+            <img src={icon} alt={`${pillar} icon`} className={styles['pillar-label-icon']} />
+            {civilizationPillars[pillar as keyof typeof civilizationPillars].label}
+        </span>
+}
+
 const PillarsView: React.FC<PillarsViewProps> = ({ pillars, setPillarCount }) => {
     return (
         <div className={styles.wrapper}>
@@ -16,7 +23,7 @@ const PillarsView: React.FC<PillarsViewProps> = ({ pillars, setPillarCount }) =>
                 <div key={key} className={styles['pillar-counter']}>
                     <NumberSpinner
                         key={key}
-                        label={pillar.label}
+                        label={buildPillarLabel(key, pillar.icon)}
                         value={pillars[key]}
                         onValueChange={(value) => setPillarCount(key, value || 0)}
                         min={0}
