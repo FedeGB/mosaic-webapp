@@ -46,6 +46,7 @@ const RegionInfluence = ({
     const buildLocationsCounter = () => {
         return Object.keys(locationTypes).map((location) => {
             const label = locationTypes[location as keyof typeof locationTypes].label;
+            const labelElement = <span className={styles['region-locations-counter-label']}>{label}</span>;
             const max = locationTypes[location as keyof typeof locationTypes].max + locations[label] - totals[label];
             return (
                 <div key={location} className={styles['region-locations-counter']}>
@@ -54,7 +55,7 @@ const RegionInfluence = ({
                         value={locations[label] ?? 0}
                         onValueChange={(value) => onLocationNumberChange(label, value || 0)}
                         key={location}
-                        label={label}
+                        label={labelElement}
                         min={0}
                         max={max}
                 />
@@ -66,6 +67,7 @@ const RegionInfluence = ({
     const buildUnitsCounter = () => {
         return Object.keys(unitTypes).map((unit) => {
             const label = unitTypes[unit as keyof typeof unitTypes].label;
+            const labelElement = <span className={styles['region-units-counter-label']}>{label}</span>;
             const max = label !== unitTypes.EXTRA.label ?
                 unitTypes[unit as keyof typeof unitTypes].max + units[label] - totals[label] :
                 unitTypes[unit as keyof typeof unitTypes].max;
@@ -76,7 +78,7 @@ const RegionInfluence = ({
                         value={units[label] ?? 0}
                         onValueChange={(value) => onUnitNumberChange(label, value || 0)}
                         key={unit}
-                        label={label}
+                        label={labelElement}
                         min={0}
                         max={max}
                     />

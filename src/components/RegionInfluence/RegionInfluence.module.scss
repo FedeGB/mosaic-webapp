@@ -25,6 +25,11 @@
 
         &-counter {
             flex: 0 0 auto;
+            
+            &-label {
+                font-size: 18px;
+                font-weight: 600;
+            }
         }
     }
 }
