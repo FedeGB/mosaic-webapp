@@ -20,6 +20,7 @@ const RegionSelect = ({ handleOnChange, value }: RegionSelectProps) => {
           value={value}
           onChange={handleOnChange}
           autoWidth
+          size='small'
           sx={{
             backgroundColor: '#1976d2',
             color: 'white',

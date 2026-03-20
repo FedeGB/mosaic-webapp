@@ -8,9 +8,12 @@
     grid-row-gap: 0px;
     font-family: 'Roboto';
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
 
     .total {
+        border: 1px solid black;
+        padding: 6px;
+
         &:nth-child(1) {
             grid-area: 1 / 1 / 2 / 3;
         }
@@ -35,7 +38,5 @@
         &:nth-child(8) {
             grid-area: 4 / 3 / 5 / 5;
         }
-        border: 1px solid black;
-        padding: 6px;
     }
 }
