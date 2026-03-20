@@ -6,9 +6,10 @@ This app lets you record and track influence across regions (Hispania, Galia, It
 - Location scoring (cities, port cities, agricultural towns, industrial towns, and wonders)
 - Unit scoring (infantry, cavalry, siege, and extra units)
 - Per-region influence totals and global totals
+- Civilization Pillars scoring with visual icons and counters
 - Persistent state via localStorage (so you can refresh without losing progress)
 
-> ⚠️ The **Civilization Pillars** and **Victory Points** views are currently placeholder stubs.
+> ⚠️ The **Victory Points** view is currently a placeholder stub.
 
 ---
 
@@ -61,8 +62,9 @@ npm run preview
 - Location score changes affect influence (cities/port cities/wonders count double)
 - Unit counts directly contribute to influence (extra units do not add to totals)
 - Totals are collected across all regions for quick reference
+- Civilization Pillars are tracked separately with individual counters for each pillar type, using icons for visual identification
 
-The store is persisted to `localStorage` under the key `regions-storage`.
+The stores are persisted to `localStorage` under the keys `regions-storage` and `pillars-storage`.
 
 ---
 
