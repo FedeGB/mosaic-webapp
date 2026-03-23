@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router'
 import { Button, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useRegionsStore } from '../../store/regionsStore'
 import { usePillarsStore } from '../../store/pillarsStore';
+import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
 
 import styles from  './Header.module.scss'
 
 const Header = () => {
+    const [confirmOpen, setConfirmOpen] = useState(false);
     const isActiveStyle = (isActive: boolean) => {
         return isActive ? {backgroundColor: '#4da200cc', border: '1px solid olive'} : {}
     }
@@ -29,9 +32,21 @@ const Header = () => {
                     <Button variant='contained' sx={isActiveStyle(isActive)}>Pilares</Button>
                 )}
             </NavLink>
-            <IconButton color='primary' aria-label='clear' onClick={clearData}>
+            <IconButton color='primary' aria-label='clear' onClick={() => setConfirmOpen(true)}>
                 <DeleteIcon />
             </IconButton>
+            <ConfirmDialog
+                open={confirmOpen}
+                handleClose={() => setConfirmOpen(false)}
+                handleConfirm={() => {
+                    clearData();
+                    setConfirmOpen(false);
+                }}
+                title="¿Estás seguro?"
+                description="Esta acción eliminará toda la información almacenada."
+                confirmText="Sí, eliminar"
+                cancelText="Cancelar"
+            />
         </header>
     )
 }
