@@ -19,8 +19,8 @@ interface RegionInfluenceProps {
     setUnitNumber: (region: string, unit: string, value: number) => void;
     selectedRegion: string;
     handleOnRegionChange: (event: SelectChangeEvent) => void;
-    isDisableUnits: boolean;
-    handleOnDisableUnitsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    isDisableCities: boolean;
+    handleOnDisableCitiesChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const RegionInfluence = ({
@@ -33,8 +33,8 @@ const RegionInfluence = ({
     setUnitNumber,
     selectedRegion,
     handleOnRegionChange,
-    isDisableUnits,
-    handleOnDisableUnitsChange
+    isDisableCities,
+    handleOnDisableCitiesChange
 }: RegionInfluenceProps) => {
     const onLocationNumberChange = (location: string, value: number) => {
         setLocationNumber(region, location, value);
@@ -102,15 +102,15 @@ const RegionInfluence = ({
             <FormControlLabel
                 control={
                     <Checkbox
-                        checked={isDisableUnits}
-                        onChange={handleOnDisableUnitsChange}
+                        checked={isDisableCities}
+                        onChange={handleOnDisableCitiesChange}
                         size='large'
                         sx={{
                             color: '#1976d2',
                         }}
                     />
                 }
-                label="Deshabilitar unidades"
+                label="Deshabilitar ciudades"
                 sx={{
                     '& .MuiFormControlLabel-label': {
                         fontSize: 18,

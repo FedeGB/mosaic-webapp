@@ -25,7 +25,7 @@ interface defaultRegionStateInterface {
         locations: typeof defaultLocationsState;
         units: typeof defaultUnitsState;
         influence: number;
-        isDisableUnits: boolean;
+        isDisableCities: boolean;
     }
 }
 
@@ -35,7 +35,7 @@ const defaultRegionsState: defaultRegionStateInterface = Object.values(regions).
             locations: {...defaultLocationsState},
             units: { ...defaultUnitsState },
             influence: 0,
-            isDisableUnits: false,
+            isDisableCities: false,
         }
 }), {})
 
@@ -64,7 +64,7 @@ type regionsStore = {
     totals: typeof defaultTotalsState;
     setLocationNumber: (region: string, location: string, value: number) => void;
     setUnitNumber: (region: string, unit: string, value: number) => void;
-    setIsDisableUnits: (region: string, isDisableUnit: boolean) => void;
+    setIsDisableCities: (region: string, isDisableCities: boolean) => void;
     resetRegions: () => void;
 };
 
@@ -81,7 +81,10 @@ const useRegionsStore = create<regionsStore>()(
                 const { regions, totals } = get();
                 const newRegions = { ...regions };
                 const oldValue = newRegions[region].locations[location];
-                newRegions[region].influence += calculateInfluenceLocationInfluenceDiff(location, oldValue, value);
+                const isCity = [locations.CIUDADES.label, locations.CIUDADES_PORTUARIAS.label].includes(location);
+                if (!newRegions[region].isDisableCities || !isCity) {
+                    newRegions[region].influence += calculateInfluenceLocationInfluenceDiff(location, oldValue, value);
+                }
                 newRegions[region].locations[location] = value;
                 const newTotals = calculateTotals(value - oldValue, location, totals);
                 return set({ regions: newRegions, totals: newTotals });
@@ -92,29 +95,28 @@ const useRegionsStore = create<regionsStore>()(
                 const oldValue = newRegions[region].units[unit];
                 const diff = value - oldValue;
                 newRegions[region].units[unit] = value;
-                if (!newRegions[region].isDisableUnits || unit === units.EXTRA.label) {
-                    newRegions[region].influence += (diff);
-                }
+                newRegions[region].influence += (diff);
                 const newTotals = unit !== units.EXTRA.label ? calculateTotals(diff, unit, totals) : totals;
                 return set({ regions: newRegions, totals: newTotals });
             },
-            setIsDisableUnits: (region: string, isDisableUnit: boolean) => {
+            setIsDisableCities: (region: string, isDisableCities: boolean) => {
                 const { regions } = get();
                 const newRegions = { ...regions };
                 const currentRegion = newRegions[region];
-                currentRegion.isDisableUnits = isDisableUnit;
-                const influenceDiff = Object.keys(currentRegion.units).reduce(
-                    (acc, value) =>
-                        value !== units.EXTRA.label ?
-                        acc + currentRegion.units[value] :
-                        acc,
-                0);
-                if (isDisableUnit) {
-                    currentRegion.influence = currentRegion.influence -
-                    influenceDiff
+                currentRegion.isDisableCities = isDisableCities;
+                const influenceDiff = Object.keys(currentRegion.locations).reduce(
+                    (acc, location) => {
+                        if ([locations.CIUDADES.label, locations.CIUDADES_PORTUARIAS.label].includes(location)) {
+                            return acc + calculateInfluenceLocationInfluenceDiff(location, 0, currentRegion.locations[location]);
+                        }
+                        return acc;
+                    },
+                    0
+                );
+                if (isDisableCities) {
+                    currentRegion.influence = currentRegion.influence - influenceDiff;
                 } else {
-                    currentRegion.influence = currentRegion.influence +
-                    influenceDiff
+                    currentRegion.influence = currentRegion.influence + influenceDiff;
                 }
                 return set({ regions: newRegions });
 
