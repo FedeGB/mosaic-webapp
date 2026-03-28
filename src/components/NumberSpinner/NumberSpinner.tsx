@@ -65,6 +65,9 @@ export default function NumberSpinner({
             fontWeight: 500,
             lineHeight: 1.5,
             mb: 0.5,
+            '&.Mui-focused': {
+              color: 'black',
+            },
           }}
         >
           {label}
@@ -120,6 +123,13 @@ export default function NumberSpinner({
                     textAlign: 'center',
                   },
                 },
+                'notchedOutline': {
+                  sx: {
+                    '&.Mui-focused': {
+                      borderColor: 'black',
+                    },
+                  }
+                }
               }}
               sx={{ pr: 0, borderRadius: 0, flex: 1 }}
             />

@@ -106,7 +106,10 @@ const RegionInfluence = ({
                         onChange={handleOnDisableCitiesChange}
                         size='large'
                         sx={{
-                            color: '#1976d2',
+                            color: 'black',
+                            '&.Mui-checked': {
+                                color: 'black',
+                            },
                         }}
                     />
                 }

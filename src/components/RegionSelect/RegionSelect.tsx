@@ -2,6 +2,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { regions } from '../../types/regions';
 import type { SelectChangeEvent } from '@mui/material/Select';
+import { regionColors } from '../../types/regions';
 
 interface RegionSelectProps {
     handleOnChange: (event: SelectChangeEvent) => void;
@@ -15,6 +16,8 @@ const RegionSelect = ({ handleOnChange, value }: RegionSelectProps) => {
         ));
     }
 
+    const textColor = value === regions.EGIPTO ? 'black' : 'white';
+
     return (
         <Select
           value={value}
@@ -22,8 +25,8 @@ const RegionSelect = ({ handleOnChange, value }: RegionSelectProps) => {
           autoWidth
           size='small'
           sx={{
-            backgroundColor: '#1976d2',
-            color: 'white',
+            backgroundColor: regionColors[value as keyof typeof regionColors],
+            color: textColor,
           }}
         >
           {buildMenuItems()}
