@@ -7,7 +7,7 @@ import type { SelectChangeEvent } from '@mui/material/Select';
 const Influence = () => {
     const regions = useRegionsStore((state) => state.regions);
     const setLocationNumber = useRegionsStore((state) => state.setLocationNumber);
-    const setsetIsDisableUnits = useRegionsStore((state) => state.setIsDisableUnits);
+    const setIsDisableCities = useRegionsStore((state) => state.setIsDisableCities);
     const setUnitNumber = useRegionsStore((state) => state.setUnitNumber);
     const totals = useRegionsStore((state) => state.totals);
     const [regionSelected, setRegionSelected] = useState(regionTypes.HIPSANIA);
@@ -16,8 +16,8 @@ const Influence = () => {
         setRegionSelected(event.target.value);
     }
 
-    const handleOnDisableUnitsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setsetIsDisableUnits(regionSelected, event.target.checked);
+    const handleOnDisableCitiesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsDisableCities(regionSelected, event.target.checked);
     }
 
     if (!isStoreLoaded) return null;
@@ -30,8 +30,8 @@ const Influence = () => {
             setLocationNumber={setLocationNumber}
             setUnitNumber={setUnitNumber}
             totals={totals}
-            isDisableUnits={regions[regionSelected].isDisableUnits}
-            handleOnDisableUnitsChange={handleOnDisableUnitsChange}
+            isDisableCities={regions[regionSelected].isDisableCities}
+            handleOnDisableCitiesChange={handleOnDisableCitiesChange}
         />
     )
 }
