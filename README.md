@@ -79,11 +79,19 @@ The stores are persisted to `localStorage` under the keys `regions-storage` and 
 
 ---
 
-## ✅ Next improvements (ideas)
+## ✅ Latest changes (as of April 2026)
 
-- Implement a full scoring view for **Civilization Pillars**
-- Implement a full scoring view for **Victory Points**
-- Add better navigation (active route highlighting)
+- Fully implemented Influence scoring across all 7 regions (Hispania, Galia, Italia, Grecia, Asiria, Egipto, Numidia)
+- Added per-region and global totals for location + unit-based influence
+- Implemented persistence for `regions-store` and `pillars-store` via localStorage
+- Added reset control in header: **"Limpiar Puntuación"**
+- Added dedicated view components for `InfluenceView` and `CivilizationPillars` routes
+
+---
+
+## 🚧 Upcoming improvements
+
+- Implement full Victory Points logic and timeline tracking in `/victory-points`
 
 ---
 
