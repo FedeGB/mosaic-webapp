@@ -11,9 +11,35 @@ interface RegionSelectProps {
 
 const RegionSelect = ({ handleOnChange, value }: RegionSelectProps) => {
     const buildMenuItems = () => {
-        return Object.values(regions).map(region => (
-            <MenuItem value={region}>{region}</MenuItem>
-        ));
+        return Object.values(regions).map(region => {
+            const textColor = region === regions.EGIPTO ? 'black' : 'white';
+            return <MenuItem
+                value={region}
+                sx={{
+                    backgroundColor: regionColors[region as keyof typeof regionColors],
+                    color: textColor,
+                    '&.Mui-selected': {
+                        backgroundColor: regionColors[region as keyof typeof regionColors],
+                        color: textColor,
+                        fontWeight: 'bold',
+                        textDecoration: 'underline',
+                    },
+                    '&.Mui-selected:hover': {
+                        backgroundColor: regionColors[region as keyof typeof regionColors],
+                        color: textColor,
+                        fontWeight: 'bold',
+                        textDecoration: 'underline',
+                    },
+                    '&:hover': {
+                        backgroundColor: regionColors[region as keyof typeof regionColors],
+                        color: textColor,
+                        fontWeight: 'bold',
+                    }
+                }}
+            >
+                {region}
+            </MenuItem>
+        });
     }
 
     const textColor = value === regions.EGIPTO ? 'black' : 'white';
