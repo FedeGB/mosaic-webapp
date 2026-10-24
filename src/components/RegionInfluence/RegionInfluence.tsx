@@ -2,7 +2,6 @@ import NumberSpinner from '../../components/NumberSpinner/NumberSpinner';
 import type { defaultTotalsState } from '../../store/regionsStore';
 import { locations as locationTypes } from '../../types/locations';
 import { units as unitTypes } from '../../types/units';
-import type { SelectChangeEvent } from '@mui/material/Select';
 import RegionSelect from '../../components/RegionSelect/RegionSelect';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -19,7 +18,7 @@ interface RegionInfluenceProps {
     setLocationNumber: (region: string, location: string, value: number) => void;
     setUnitNumber: (region: string, unit: string, value: number) => void;
     selectedRegion: string;
-    handleOnRegionChange: (event: SelectChangeEvent) => void;
+    handleOnRegionChange: (region: string) => void;
     isDisableCities: boolean;
     handleOnDisableCitiesChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

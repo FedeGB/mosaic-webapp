@@ -2,7 +2,6 @@ import { useState } from 'react';
 import InfluenceView from '../../views/InfluenceView/InfluenceView';
 import { useRegionsStore, isStoreLoaded } from '../../store/regionsStore';
 import { regions as regionTypes } from '../../types/regions';
-import type { SelectChangeEvent } from '@mui/material/Select';
 
 const Influence = () => {
     const regions = useRegionsStore((state) => state.regions);
@@ -12,8 +11,8 @@ const Influence = () => {
     const totals = useRegionsStore((state) => state.totals);
     const [regionSelected, setRegionSelected] = useState(regionTypes.HIPSANIA);
 
-    const handleOnRegionChange = (event: SelectChangeEvent) => {
-        setRegionSelected(event.target.value);
+    const handleOnRegionChange = (region: string) => {
+        setRegionSelected(region);
     }
 
     const handleOnDisableCitiesChange = (event: React.ChangeEvent<HTMLInputElement>) => {

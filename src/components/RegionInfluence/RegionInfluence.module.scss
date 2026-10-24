@@ -11,9 +11,6 @@
         padding-bottom: 17px;
         border-bottom: 2px solid var(--region-color);
 
-        :global(.MuiSelect-select) { font-family: Georgia, serif; font-size: 24px; font-weight: 700; padding-bottom: 5px; padding-top: 5px; }
-        :global(.MuiOutlinedInput-notchedOutline) { border: 0; }
-        
         &-influence {
             align-items: flex-end;
             color: #6d6559;
@@ -56,7 +53,6 @@
 
 @media (max-width: 500px) {
     .region {
-        &-title :global(.MuiSelect-select) { font-size: 20px; }
         &-title-influence strong { font-size: 31px; }
         .sectionHeading { display: block; }
         .sectionHeading span { display: block; margin-top: 2px; }

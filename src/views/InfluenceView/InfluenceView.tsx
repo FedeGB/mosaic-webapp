@@ -1,7 +1,6 @@
 import RegionInfluence from '../../components/RegionInfluence/RegionInfluence';
 import { defaultRegionsState, defaultTotalsState } from '../../store/regionsStore';
 import TotalsInRegions from '../../components/TotalsInRegions/TotalsInRegions';
-import type { SelectChangeEvent } from '@mui/material/Select';
 
 import styles from './InfluenceView.module.scss';
 
@@ -11,7 +10,7 @@ interface InfluenceViewProps {
     setLocationNumber: (region: string, location: string, value: number) => void;
     setUnitNumber: (region: string, unit: string, value: number) => void;
     selectedRegion: string;
-    handleOnRegionChange: (event: SelectChangeEvent) => void;
+    handleOnRegionChange: (region: string) => void;
     isDisableCities: boolean;
     handleOnDisableCitiesChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
