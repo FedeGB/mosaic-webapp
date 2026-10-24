@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router'
-import { Button, IconButton } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Button, Tooltip } from '@mui/material'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import PublicIcon from '@mui/icons-material/Public';
 import { useRegionsStore } from '../../store/regionsStore'
 import { usePillarsStore } from '../../store/pillarsStore';
 import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
@@ -10,9 +12,6 @@ import styles from  './Header.module.scss'
 
 const Header = () => {
     const [confirmOpen, setConfirmOpen] = useState(false);
-    const isActiveStyle = (isActive: boolean) => {
-        return isActive ? {backgroundColor: '#4da200cc', border: '1px solid olive'} : {}
-    }
     const clearRegionsStore = useRegionsStore((state) => state.resetRegions)
     const clearPillarsStore = usePillarsStore((state) => state.resetPillars)
     const clearData = () => {
@@ -22,19 +21,28 @@ const Header = () => {
 
     return (
         <header className={styles.header}>
-            <NavLink to="/influence">
-                {({ isActive }) => (
-                    <Button variant='contained' sx={{...isActiveStyle(isActive)}}>Influencia</Button>
-                )}
-            </NavLink>
-            <NavLink to="/civilization-pillars">
-                {({ isActive }) => (
-                    <Button variant='contained' sx={isActiveStyle(isActive)}>Pilares</Button>
-                )}
-            </NavLink>
-            <IconButton color='primary' aria-label='clear' onClick={() => setConfirmOpen(true)}>
-                <DeleteIcon />
-            </IconButton>
+            <div className={styles.inner}>
+                <NavLink to="/influence" className={styles.brand} aria-label="Mosaic, influencia">
+                    <span className={styles.brandMark}><AccountBalanceIcon fontSize="small" /></span>
+                    <span>
+                        <strong>Mosaic</strong>
+                        <small>Historia de una civilización</small>
+                    </span>
+                </NavLink>
+                <nav className={styles.navigation} aria-label="Secciones de la partida">
+                    <NavLink to="/influence" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+                        <PublicIcon fontSize="small" /> Influencia
+                    </NavLink>
+                    <NavLink to="/civilization-pillars" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+                        <AccountBalanceIcon fontSize="small" /> Pilares
+                    </NavLink>
+                </nav>
+                <Tooltip title="Reiniciar partida">
+                    <Button className={styles.reset} color="error" variant="outlined" startIcon={<DeleteOutlineIcon />} onClick={() => setConfirmOpen(true)}>
+                        <span className={styles.resetLabel}>Reiniciar</span>
+                    </Button>
+                </Tooltip>
+            </div>
             <ConfirmDialog
                 open={confirmOpen}
                 handleClose={() => setConfirmOpen(false)}
@@ -42,9 +50,9 @@ const Header = () => {
                     clearData();
                     setConfirmOpen(false);
                 }}
-                title="¿Estás seguro?"
-                description="Esta acción eliminará toda la información almacenada."
-                confirmText="Sí, eliminar"
+                title="¿Reiniciar la partida?"
+                description="Se eliminarán todos los contadores de influencia y pilares almacenados en este dispositivo."
+                confirmText="Sí, reiniciar"
                 cancelText="Cancelar"
             />
         </header>

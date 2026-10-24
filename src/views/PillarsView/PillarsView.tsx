@@ -19,17 +19,24 @@ const buildPillarLabel = (pillar: string, icon: string) => {
 const PillarsView: React.FC<PillarsViewProps> = ({ pillars, setPillarCount }) => {
     return (
         <div className={styles.wrapper}>
-            {Object.entries(civilizationPillars).map(([key, pillar]) => (
-                <div key={key} className={styles['pillar-counter']}>
-                    <NumberSpinner
-                        key={key}
-                        label={buildPillarLabel(key, pillar.icon)}
-                        value={pillars[key]}
-                        onValueChange={(value) => setPillarCount(key, value || 0)}
-                        min={0}
-                    />
-                </div>
-            ))}
+            <div className={styles.intro}>
+                <span className={styles.eyebrow}>Tablilla de civilización</span>
+                <h1>Pilares de la civilización</h1>
+                <p>Registra el desarrollo de cada ámbito de tu imperio.</p>
+            </div>
+            <div className={styles.tableau}>
+                {Object.entries(civilizationPillars).map(([key, pillar]) => (
+                    <div key={key} className={styles['pillar-counter']}>
+                        <NumberSpinner
+                            key={key}
+                            label={buildPillarLabel(key, pillar.icon)}
+                            value={pillars[key]}
+                            onValueChange={(value) => setPillarCount(key, value || 0)}
+                            min={0}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

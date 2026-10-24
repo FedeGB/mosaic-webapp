@@ -1,5 +1,10 @@
 .app {
-  height: 100vh;
-  background-color: olivedrab;
+  min-height: 100vh;
+  background-color: #e8dfcb;
+  background-image:
+    linear-gradient(90deg, rgba(81, 59, 29, .035) 1px, transparent 1px),
+    linear-gradient(rgba(81, 59, 29, .035) 1px, transparent 1px),
+    radial-gradient(circle at 50% -15%, #f8f3e8 0, #e8dfcb 58%, #d8c9ae 140%);
+  background-size: 28px 28px, 28px 28px, auto;
   overflow-y: auto;
 }

@@ -1,6 +1,33 @@
 .wrapper {
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 38px 24px 56px;
+}
+
+.intro {
+    margin-bottom: 26px;
+    max-width: 650px;
+
+    h1 { font-family: Georgia, serif; font-size: clamp(28px, 4vw, 40px); letter-spacing: -.025em; margin: 5px 0 8px; }
+    p { color: #6d6559; font-size: 16px; line-height: 1.55; margin: 0; }
+}
+
+.eyebrow { color: #7b5b28; font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+
+.board { align-items: start; display: grid; gap: 24px; grid-template-columns: minmax(255px, 320px) minmax(0, 1fr); }
+
+.supplies, .regionPanel {
+    background: rgba(248, 243, 232, .9);
+    border: 1px solid rgba(123, 91, 40, .28);
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(81, 59, 29, .11);
+}
+
+.supplies { padding: 18px; }
+.regionPanel { min-height: 450px; padding: 8px 24px 28px; }
+
+@media (max-width: 760px) {
+    .wrapper { padding: 24px 14px 36px; }
+    .board { grid-template-columns: 1fr; }
+    .regionPanel { padding: 8px 16px 22px; }
 }

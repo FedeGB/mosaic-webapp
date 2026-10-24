@@ -1,35 +1,64 @@
 .region {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
 
     &-title {
         align-items: center;
         display: flex;
-        font-family: 'Roboto';
-        font-size: 20px;
-        font-weight: 600;
-        margin: 20px 0 10px 0;
+        justify-content: space-between;
+        margin: 16px 0 6px;
+        padding-bottom: 17px;
+        border-bottom: 2px solid var(--region-color);
+
+        :global(.MuiSelect-select) { font-family: Georgia, serif; font-size: 24px; font-weight: 700; padding-bottom: 5px; padding-top: 5px; }
+        :global(.MuiOutlinedInput-notchedOutline) { border: 0; }
         
         &-influence {
-            color: black;
-            margin-left: 10px;
+            align-items: flex-end;
+            color: #6d6559;
+            display: flex;
+            flex-direction: column;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+
+            strong { color: #2d2a24; font-family: Georgia, serif; font-size: 36px; letter-spacing: 0; line-height: .95; }
         }
     }
 
-    
+    .kicker { color: #6d6559; display: block; font-size: 10px; font-weight: 800; letter-spacing: .12em; margin-bottom: 2px; text-transform: uppercase; }
+    .sectionHeading { align-items: baseline; border-bottom: 1px solid #ded2bc; display: flex; gap: 9px; margin-top: 6px; padding-bottom: 7px; }
+    .sectionHeading h2 { color: #513b1d; font-family: Georgia, serif; font-size: 20px; margin: 0; }
+    .sectionHeading span { color: #847969; font-size: 12px; }
+
     &-locations, &-units {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 18px 24px;
 
         &-counter {
             flex: 0 0 auto;
             
             &-label {
-                font-size: 18px;
+                color: #4d483f;
+                font-size: 14px;
                 font-weight: 600;
             }
         }
+    }
+
+    .cityToggle { border-top: 1px solid #ded2bc; margin-top: 5px; padding-top: 12px; }
+    .cityToggle :global(.MuiFormControlLabel-label) { color: #4d483f; font-size: 14px; font-weight: 700; }
+    .cityToggle > span { color: #847969; display: block; font-size: 12px; margin-left: 33px; margin-top: -4px; }
+}
+
+@media (max-width: 500px) {
+    .region {
+        &-title :global(.MuiSelect-select) { font-size: 20px; }
+        &-title-influence strong { font-size: 31px; }
+        .sectionHeading { display: block; }
+        .sectionHeading span { display: block; margin-top: 2px; }
     }
 }

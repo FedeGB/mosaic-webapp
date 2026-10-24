@@ -1,24 +1,52 @@
 .wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 10px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 38px 24px 56px;
+
+    .intro {
+        margin-bottom: 26px;
+        h1 { font-family: Georgia, serif; font-size: clamp(28px, 4vw, 40px); letter-spacing: -.025em; margin: 5px 0 8px; }
+        p { color: #6d6559; font-size: 16px; margin: 0; }
+    }
+    .eyebrow { color: #7b5b28; font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .tableau { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .pillar{
         &-counter {
-            flex: 0 0 auto;
+            background: rgba(248, 243, 232, .92);
+            border: 1px solid rgba(123, 91, 40, .28);
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(81, 59, 29, .09);
+            padding: 17px;
+            transition: box-shadow .15s ease, transform .15s ease;
+
+            &:hover { box-shadow: 0 10px 20px rgba(81, 59, 29, .15); transform: translateY(-2px); }
+            :global(.MuiFormControl-root) { width: 100%; }
         }
 
         &-label {
             align-items: center;
             display: flex;
-            font-size: 20px;
-            font-weight: 600;
+            color: #513b1d;
+            font-family: Georgia, serif;
+            font-size: 19px;
+            font-weight: 700;
             gap: 8px;
+            margin-bottom: 12px;
 
             &-icon {
-                width: 30px;
+                filter: drop-shadow(0 1px 0 rgba(255,255,255,.7));
+                width: 34px;
             }
         }
     }
+}
+
+@media (max-width: 760px) {
+    .wrapper { padding: 24px 14px 36px; }
+    .wrapper .tableau { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 430px) {
+    .wrapper .tableau { grid-template-columns: 1fr; }
 }

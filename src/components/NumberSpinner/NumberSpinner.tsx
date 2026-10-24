@@ -37,11 +37,14 @@ export default function NumberSpinner({
           variant="outlined"
           sx={{
             '& .MuiButton-root': {
-              borderColor: 'divider',
+              borderColor: '#cbbd9f',
+              borderRadius: '8px',
               minWidth: 0,
-              bgcolor: 'action.hover',
+              bgcolor: '#eee5d4',
+              padding: size === 'small' ? '5px' : '7px',
               '&:not(.Mui-disabled)': {
-                color: 'text.primary',
+                color: '#513b1d',
+                '&:hover': { bgcolor: '#dfd0b4' },
               },
             },
           }}
@@ -60,9 +63,9 @@ export default function NumberSpinner({
           sx={{
             display: 'inline-block',
             cursor: 'ew-resize',
-            fontSize: '16px',
-            color: 'text.primary',
-            fontWeight: 500,
+            fontSize: '14px',
+            color: '#4d483f',
+            fontWeight: 700,
             lineHeight: 1.5,
             mb: 0.5,
             '&.Mui-focused': {
@@ -119,9 +122,7 @@ export default function NumberSpinner({
                       (other.min?.toString() || '').length,
                       state.inputValue.length || 1,
                     ) + 1,
-                  sx: {
-                    textAlign: 'center',
-                  },
+                  sx: { fontWeight: 700, fontVariantNumeric: 'tabular-nums', padding: '8px 7px', textAlign: 'center' },
                 },
                 'notchedOutline': {
                   sx: {
@@ -131,7 +132,7 @@ export default function NumberSpinner({
                   }
                 }
               }}
-              sx={{ pr: 0, borderRadius: 0, flex: 1 }}
+              sx={{ backgroundColor: '#fffdf7', borderRadius: 0, flex: 1, pr: 0 }}
             />
           )}
         />

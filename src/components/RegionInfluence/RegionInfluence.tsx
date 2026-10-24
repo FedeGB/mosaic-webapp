@@ -6,6 +6,7 @@ import type { SelectChangeEvent } from '@mui/material/Select';
 import RegionSelect from '../../components/RegionSelect/RegionSelect';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { regionColors } from '../../types/regions';
 
 import styles from './RegionInfluence.module.scss';
 
@@ -88,39 +89,38 @@ const RegionInfluence = ({
     }
 
     return (
-        <div className={styles.region}>
-            <h2 className={styles['region-title']}>
-                <RegionSelect handleOnChange={handleOnRegionChange} value={selectedRegion} />
-                <span className={styles['region-title-influence']}>Influencia: {influence}</span>
-            </h2>
+        <div className={styles.region} style={{ '--region-color': regionColors[region as keyof typeof regionColors] } as React.CSSProperties}>
+            <div className={styles['region-title']}>
+                <div>
+                    <span className={styles.kicker}>Región seleccionada</span>
+                    <RegionSelect handleOnChange={handleOnRegionChange} value={selectedRegion} />
+                </div>
+                <div className={styles['region-title-influence']}>
+                    <span>Influencia</span>
+                    <strong>{influence}</strong>
+                </div>
+            </div>
+            <div className={styles.sectionHeading}>
+                <h2>Construcciones</h2>
+                <span>Desarrollo de la región</span>
+            </div>
             <div className={styles['region-locations']}>
                 {buildLocationsCounter()}
+            </div>
+            <div className={styles.sectionHeading}>
+                <h2>Unidades</h2>
+                <span>Presencia militar</span>
             </div>
             <div className={styles['region-units']}>
                 {buildUnitsCounter()}
             </div>
-            <FormControlLabel
-                control={
-                    <Checkbox
-                        checked={isDisableCities}
-                        onChange={handleOnDisableCitiesChange}
-                        size='large'
-                        sx={{
-                            color: 'black',
-                            '&.Mui-checked': {
-                                color: 'black',
-                            },
-                        }}
-                    />
-                }
-                label="Deshabilitar ciudades"
-                sx={{
-                    '& .MuiFormControlLabel-label': {
-                        fontSize: 18,
-                        fontWeight: '500',
-                    }
-                }}
-            />
+            <div className={styles.cityToggle}>
+                <FormControlLabel
+                    control={<Checkbox checked={isDisableCities} onChange={handleOnDisableCitiesChange} color="primary" />}
+                    label="No contar ciudades ni puertos"
+                />
+                <span>Útil cuando la regla de la región los excluye.</span>
+            </div>
         </div>
     )
 }

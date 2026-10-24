@@ -28,20 +28,31 @@ const InfluenceView = ({
 }: InfluenceViewProps) => {
   return (
     <div className={styles.wrapper}>
-        <TotalsInRegions totals={totals} />
-        <RegionInfluence
-            region={selectedRegion}
-            locations={regions[selectedRegion].locations}
-            units={regions[selectedRegion].units}
-            influence={regions[selectedRegion].influence}
-            setLocationNumber={setLocationNumber}
-            setUnitNumber={setUnitNumber}
-            totals={totals}
-            selectedRegion={selectedRegion}
-            handleOnRegionChange={handleOnRegionChange}
-            isDisableCities={isDisableCities}
-            handleOnDisableCitiesChange={handleOnDisableCitiesChange}
-        />
+        <div className={styles.intro}>
+          <span className={styles.eyebrow}>Tablero de influencia</span>
+          <h1>Expande tu civilización</h1>
+          <p>Registra construcciones y unidades por región. El suministro disponible se actualiza automáticamente.</p>
+        </div>
+        <div className={styles.board}>
+          <aside className={styles.supplies}>
+            <TotalsInRegions totals={totals} />
+          </aside>
+          <main className={styles.regionPanel}>
+            <RegionInfluence
+              region={selectedRegion}
+              locations={regions[selectedRegion].locations}
+              units={regions[selectedRegion].units}
+              influence={regions[selectedRegion].influence}
+              setLocationNumber={setLocationNumber}
+              setUnitNumber={setUnitNumber}
+              totals={totals}
+              selectedRegion={selectedRegion}
+              handleOnRegionChange={handleOnRegionChange}
+              isDisableCities={isDisableCities}
+              handleOnDisableCitiesChange={handleOnDisableCitiesChange}
+            />
+          </main>
+        </div>
     </div>
   );
 }
