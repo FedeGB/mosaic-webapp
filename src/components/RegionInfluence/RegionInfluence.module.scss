@@ -6,10 +6,13 @@
     &-title {
         align-items: center;
         display: flex;
+        gap: 12px;
         justify-content: space-between;
         margin: 16px 0 6px;
         padding-bottom: 17px;
         border-bottom: 2px solid var(--region-color);
+
+        > * { min-width: 0; }
 
         &-influence {
             align-items: flex-end;
@@ -34,9 +37,11 @@
         display: flex;
         flex-wrap: wrap;
         gap: 18px 24px;
+        min-width: 0;
 
         &-counter {
             flex: 0 0 auto;
+            min-width: 0;
             
             &-label {
                 color: #4d483f;
@@ -53,6 +58,8 @@
 
 @media (max-width: 500px) {
     .region {
+        &-title { align-items: flex-start; flex-wrap: wrap; }
+        &-title-influence { margin-left: auto; }
         &-title-influence strong { font-size: 31px; }
         .sectionHeading { display: block; }
         .sectionHeading span { display: block; margin-top: 2px; }

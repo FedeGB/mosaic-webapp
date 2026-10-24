@@ -55,7 +55,7 @@ export default function NumberSpinner({
     >
       <BaseNumberField.ScrubArea
         render={
-          <Box component="span" sx={{ userSelect: 'none', width: 'max-content' }} />
+          <Box component="span" sx={{ display: 'inline-block', maxWidth: '100%', userSelect: 'none' }} />
         }
       >
         <FormLabel

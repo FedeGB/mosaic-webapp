@@ -23,8 +23,8 @@
     box-shadow: 0 8px 22px rgba(81, 59, 29, .11);
 }
 
-.supplies { padding: 18px; }
-.regionPanel { min-height: 450px; padding: 8px 24px 28px; }
+.supplies { min-width: 0; padding: 18px; }
+.regionPanel { min-height: 450px; min-width: 0; padding: 8px 24px 28px; }
 
 @media (max-width: 760px) {
     .wrapper { padding: 24px 14px 36px; }
